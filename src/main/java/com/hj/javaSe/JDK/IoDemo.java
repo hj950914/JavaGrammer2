@@ -3,12 +3,13 @@ package com.hj.javaSe.JDK;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
+import java.sql.SQLOutput;
 
 /**
  * Author: hj
  * Date: 2019-03-25 14:57
  * Description: <文件IO,文件输入-读，文件输出-写>
- *              <字节流,字节缓冲流,字符流>
+ * <字节流,字节缓冲流,字符流>
  */
 public class IoDemo {
 
@@ -221,11 +222,11 @@ public class IoDemo {
                 BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("/Users/huangjie/Desktop/IO/" +
                         "大话设计模式(带目录完整版)copy2.pdf"));
                 int n = 0;
-                byte[] b=new byte[1024];
+                byte[] b = new byte[1024];
                 //拷贝之前记录系统时间
                 long startTime = System.currentTimeMillis();
                 while ((n = bis.read(b)) != -1) {
-                    bos.write(b,0,n);
+                    bos.write(b, 0, n);
                     bos.flush();
                 }
                 //拷贝完成后记录系统时间
@@ -238,4 +239,101 @@ public class IoDemo {
             }
         }
     }
+
+
+    /*
+     *
+     *
+     *
+     *
+     *
+     * end
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     * */
+
+    /*
+     *  字节流和字符流的转换
+     * */
+    @Test
+    void testSix() {
+        try {
+            //将输入字节流转成输入字符流
+            InputStreamReader isr = new InputStreamReader(new FileInputStream
+                    ("/Users/huangjie/Desktop/IO/score.txt"));
+            //将输出字节流转成输出字符流
+            OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream
+                    ("/Users/huangjie/Desktop/IO/score1.txt"));
+            int n = 0;
+            //将读取的字符用整形输出
+            /*while ((n=isr.read())!=-1){
+                System.out.print((char)n);
+            }*/
+            char[] c = new char[10];
+            //将读取的字符存入字符数组
+            while ((n = isr.read(c)) != -1) {
+                //方式1
+                /*String s=new String(c,0,n);
+                osw.write(s);*/
+                //方式2
+                //写数据
+                osw.write(c, 0, n);
+                osw.flush();
+            }
+
+            isr.close();
+            osw.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*
+     *  字符缓冲流 BufferedReader(读),BufferedWriter(写)
+     * */
+    @Test
+    void testSeven() {
+        try {
+            //将输入字节流转成输入字符流
+            InputStreamReader isr = new InputStreamReader(new FileInputStream
+                    ("/Users/huangjie/Desktop/IO/score.txt"));
+            //将输入字符流转输入字符缓冲流
+            BufferedReader br=new BufferedReader(isr);
+            //将输出字节流转成输出字符流
+            OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream
+                    ("/Users/huangjie/Desktop/IO/score1.txt"));
+            //将输出字符流转输出字符缓冲流
+            BufferedWriter bw=new BufferedWriter(osw);
+
+            int n=0;
+            char[] c=new char[10];
+            //读
+            while ((n=br.read(c))!=-1){
+                String s=new String(c,0,n);
+                //写字符串
+                bw.write(s);
+                bw.flush();
+            }
+
+            isr.close();
+            br.close();
+            osw.close();
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    /*
+    * 对象序列化
+    * */
 }
