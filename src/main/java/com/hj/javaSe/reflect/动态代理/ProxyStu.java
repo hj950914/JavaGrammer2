@@ -10,24 +10,24 @@ import java.lang.reflect.Method;
  */
 public class ProxyStu implements InvocationHandler {
 
-    Person person;
+    Student student;
 
-    public ProxyStu(Person person) {
-        this.person = person;
+    public ProxyStu(Student student) {
+        this.student = student;
     }
 
     /*
-    * proxy:代表动态代理对象
-    * method:代表正在执行的方法
-    * args:代表调用目标方法时传入的实参
-    * */
+     * proxy:代表动态代理对象
+     * method:代表正在执行的方法
+     * args:代表调用目标方法时传入的实参
+     * */
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         //代理过程中插入另外一个功能
         System.out.println("我是执行代理之前插入的功能!");
-        System.out.println("代理执行的方法:"+method.getName());
+        System.out.println("代理执行的方法:" + method.getName());
         //反射
-        Object result=method.invoke(person,args);
+        Object result = method.invoke(student, args);
         System.out.println("我是执行代理完成后插入的功能!");
         return result;
     }

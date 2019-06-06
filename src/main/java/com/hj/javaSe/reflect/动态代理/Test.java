@@ -15,12 +15,12 @@ public class Test {
     @org.junit.jupiter.api.Test
     void testProxy(){
         //创建需要被代理的实例对象
-        Person person=new Student("李四");
+        Student student=new Student("李四");
         //创建一个与代理对象相关联的InvocationHandler
-        InvocationHandler stuHandler=new ProxyStu(person);
+        InvocationHandler stuHandler=new ProxyStu(student);
         //创建一个代理对象来处理"李四"
         //代理对象的每个执行方法都会替换执行Invocation中的invoke方法
-        Person stuProxy=(Person) Proxy.newProxyInstance(Person.class.getClassLoader(), new Class[]{Person.class},stuHandler);
+        Person stuProxy=(Person) Proxy.newProxyInstance(Student.class.getClassLoader(), new Class[]{Person.class},stuHandler);
         //代理执行Student类里的交班费方法
         stuProxy.giveMoney();
     }

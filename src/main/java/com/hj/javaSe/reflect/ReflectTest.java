@@ -6,10 +6,7 @@ import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 
 /**
@@ -160,7 +157,7 @@ public class ReflectTest {
             Class[] parameterTypes = constructor.getParameterTypes();
             for (Class class1 : parameterTypes) {
                 //获取类型名称
-                System.out.print(class1.getName()+" ,");
+                System.out.print(class1.getName() + " ,");
             }
             System.out.println(")");
         }

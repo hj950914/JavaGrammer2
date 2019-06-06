@@ -12,8 +12,7 @@ public class ExceptionDemo {
     @Test
     void testOne() {
         try {
-            int i = 100/0;
-            System.out.println(i);
+            System.out.println(100/0);
         } catch (Exception e) {
             System.out.println(1);
             //throw new RuntimeException();
@@ -21,6 +20,18 @@ public class ExceptionDemo {
             System.out.println(2);
         }
         System.out.println(3);
+    }
+
+    @Test
+    void testTwo() {
+        try {
+            if (1 < 2) {
+                throw new Exception("语句抛出异常");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
