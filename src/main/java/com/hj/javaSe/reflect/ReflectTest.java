@@ -2,7 +2,6 @@ package com.hj.javaSe.reflect;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
