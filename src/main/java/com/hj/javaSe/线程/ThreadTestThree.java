@@ -25,7 +25,7 @@ public class ThreadTestThree implements Runnable{
         ThreadTestThree threadTestThree=new ThreadTestThree();
         Thread thread=new Thread(threadTestThree);
         thread.start();
-        Thread thread1=new Thread(threadTestThree);
-        thread1.start();
+        //Thread thread1=new Thread(threadTestThree);
+        //thread1.start();
     }
 }

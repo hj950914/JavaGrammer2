@@ -3,7 +3,6 @@ package com.hj.javaSe.JDK;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
-import java.sql.SQLOutput;
 
 /**
  * Author: hj
@@ -305,22 +304,23 @@ public class IoDemo {
             InputStreamReader isr = new InputStreamReader(new FileInputStream
                     ("/Users/huangjie/Desktop/IO/score.txt"));
             //将输入字符流转输入字符缓冲流
-            BufferedReader br=new BufferedReader(isr);
+            BufferedReader br = new BufferedReader(isr);
             //将输出字节流转成输出字符流
             OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream
                     ("/Users/huangjie/Desktop/IO/score1.txt"));
             //将输出字符流转输出字符缓冲流
-            BufferedWriter bw=new BufferedWriter(osw);
+            BufferedWriter bw = new BufferedWriter(osw);
 
-            int n=0;
-            char[] c=new char[10];
+            int n = 0;
+            char[] c = new char[10];
             //读
-            while ((n=br.read(c))!=-1){
-                String s=new String(c,0,n);
+            while ((n = br.read(c)) != -1) {
+                String s = new String(c, 0, n);
                 //写字符串
                 bw.write(s);
                 bw.flush();
             }
+
 
             isr.close();
             br.close();
@@ -333,7 +333,34 @@ public class IoDemo {
     }
 
 
-    /*
-    * 对象序列化
-    * */
+    /**
+     * 重新练习
+     */
+    @Test
+    public void newTest() throws IOException {
+        FileInputStream fis = new FileInputStream("/Users/huangjie/Desktop/IO/score.txt");
+        //字节缓冲流
+        BufferedInputStream bis = new BufferedInputStream(fis);
+        int n;
+        while ((n=bis.read())!=-1){
+            System.out.print((char) n);
+        }
+        System.out.println("\n"+"----------");
+        //字节输入流->字符输入流->字符缓冲流读
+        FileInputStream fis2 = new FileInputStream("/Users/huangjie/Desktop/IO/score.txt");
+        InputStreamReader isr=new InputStreamReader(fis2);
+        BufferedReader br=new BufferedReader(isr);
+        //字节输出流->字符输出流->字符缓冲流写
+        FileOutputStream fos=new FileOutputStream("/Users/huangjie/Desktop/IO/new_score.txt");
+        OutputStreamWriter osw=new OutputStreamWriter(fos);
+        BufferedWriter bw= new BufferedWriter(osw);
+        String result;
+        while ((result=br.readLine())!=null){
+            bw.write(result+"\n");
+            System.out.println(result);
+        }
+        bw.flush();
+
+    }
+
 }
