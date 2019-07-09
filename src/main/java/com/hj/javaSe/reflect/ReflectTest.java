@@ -15,6 +15,7 @@ import java.util.Collections;
  */
 public class ReflectTest {
 
+
     /*
      * 获取类加载器
      * AppClassLoader(自定义类加载器)
@@ -157,6 +158,40 @@ public class ReflectTest {
             for (Class class1 : parameterTypes) {
                 //获取类型名称
                 System.out.print(class1.getName() + " ,");
+            }
+            System.out.println(")");
+        }
+    }
+
+    /**
+     * 重新练习
+     * 获取成员变量和成员方法信息
+     */
+    @Test
+    public void newTest() {
+        Class c = Integer.class;
+        //获取成员变量信息
+        Field[] fs = c.getFields();
+        for (Field field:fs){
+            //成员变量类型
+            Class type = field.getType();
+            System.out.print(type.getName()+" ");
+            //成员变量名
+            System.out.println(field.getName());
+        }
+        System.out.println("——————————————————————————————————");
+        //获取成员方法信息
+        Method[] methods = c.getMethods();
+        for (Method method:methods){
+            //获取方法返回值类型
+            Class returnType = method.getReturnType();
+            System.out.print(returnType.getName()+" ");
+            //获取方法名
+            System.out.print(method.getName()+"(");
+            //获取参数
+            Class<?>[] parameterTypes = method.getParameterTypes();
+            for (Class p:parameterTypes){
+                System.out.print(p.getName()+",");
             }
             System.out.println(")");
         }
